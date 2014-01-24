@@ -1,0 +1,31 @@
+{
+  "name": "kwiz",
+  "version": "0.0.0",
+  "homepage": "https://github.com/pierr/kwiz",
+  "authors": [
+    "Pierre <pierre.besson7@gmail.com>"
+  ],
+  "description": "Visualization application.",
+  "main": "app.js",
+  "keywords": [
+    "node",
+    "express",
+    "dataviz",
+    "quizz"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "~3.3.13",
+    "jquery": "~2.0.3",
+    "socket.io": "~0.9.15",
+    "bootstrap": "~3.0.3"
+  }
+}

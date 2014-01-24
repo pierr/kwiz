@@ -6,8 +6,11 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , question = require('./routes/question')
   , http = require('http')
-  , path = require('path');
+  , path = require('path'),
+	connect = require('connect'),
+	port = 7777;
 
 var app = express();
 
@@ -31,8 +34,12 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/question/:id', question.index);
+app.post('/newQuestion', question.post);
 app.get('/users', user.list);
 
-http.createServer(app).listen(app.get('port'), function(){
+var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+ global.io = require('socket.io').listen(server);
