@@ -8,11 +8,15 @@ exports.index = function(req, res){
   res.render('question', { title: 'Question' });
 };
 exports.pending = function(req, res){
-  res.render('pending-question', { question: 'Question' });
+	var questionId = req.params.questionId;
+	var question = db.getQuestion(questionId);
+	console.log(question, questionId);
+  res.render('pending-question', { question: question});
 };
 exports.post = function(req, res){
-	db.addQuestion(req.body.question);
+	var questionId = db.addQuestion(req.body.question);
+	res.redirect(/question/+questionId);
 	//db.addAnswer(req.body.questionId, req.body.answer);
 	//io.emit('new_score', db.processAnswers());
-  console.log(req.body);
+	//  console.log(req.body);
 };

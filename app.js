@@ -34,7 +34,8 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/question/:id', question.index);
+app.get('/question', question.index);
+app.get('/question/:id', question.pending);
 app.post('/newQuestion', question.post);
 app.get('/users', user.list);
 
