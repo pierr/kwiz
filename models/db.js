@@ -1,4 +1,4 @@
- global.DB = [];
+ var DB = [];
     var fs = require('fs'),
     _ = require('underscore');
 
@@ -14,11 +14,11 @@ loadDB = function() {
       return;
     }
     return fs.readFile(path, function(err, data) {
-      var DB;
       if (err) {
         return console.log("[DB Load Error]: " + err);
       } else {
         DB = JSON.parse(data);
+        console.log(DB);
         return console.log("[DB Load] starts with " + DB.length + " item(s)");
       }
     });
@@ -51,9 +51,10 @@ function processAnswers(questionId){
 	var question = _.findWhere(DB, {id: questionId}) || {};
 	return _.countBy(question.answers, function(num){return num;});
 }
-loadDB();
+
 module.exports = {
-	addQuestion: addQuestion,
+	loadDB: loadDB,
+  addQuestion: addQuestion,
 	addAnswer: addAnswer,
 	processAnswers: processAnswers,
   getQuestion: getQuestion

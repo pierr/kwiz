@@ -10,6 +10,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path'),
 	connect = require('connect'),
+	db = require('./models/db'),
 	port = 7777;
 
 var app = express();
@@ -41,6 +42,7 @@ app.get('/users', user.list);
 
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
+  db.loadDB();
 });
 
  global.io = require('socket.io').listen(server);

@@ -1,6 +1,7 @@
 extends layout
 
 block content
-  h1= question
-  button#yes.btn-danger no
-  button#yes.btn-success yes
+  h1 #{text}
+  div.btn-group
+    button#yes.btn.btn-lg.btn-danger no
+    button#yes.btn.btn-lg.btn-success yes

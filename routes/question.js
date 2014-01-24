@@ -8,10 +8,9 @@ exports.index = function(req, res){
   res.render('question', { title: 'Question' });
 };
 exports.pending = function(req, res){
-	var questionId = req.params.questionId;
+	var questionId = +req.params.id;
 	var question = db.getQuestion(questionId);
-	console.log(question, questionId);
-  res.render('pending-question', { question: question});
+    res.render('pending-question', question);
 };
 exports.post = function(req, res){
 	var questionId = db.addQuestion(req.body.question);
