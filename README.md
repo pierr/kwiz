@@ -14,4 +14,4 @@ Kwiz is able to dispatch in real time the result of the questions.
 -  ```npm run test``` to test the application. It uses [mocha](http://visionmedia.github.io/mocha/) in order to run the tests.
 
 ## Author
-[Pierre Besson](pierr.github.io)
+[Pierre Besson](http://pierr.github.io)
