@@ -40,9 +40,15 @@ app.get('/question/:id', question.pending);
 app.post('/newQuestion', question.post);
 app.get('/users', user.list);
 
+//Database Load
+db.loadDB(function(err, numItems){
+  if(err){throw err;}
+  console.log("Database load with "+ numItems + " items.");
+});
+
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
-  db.loadDB();
+  
 });
 
  global.io = require('socket.io').listen(server);

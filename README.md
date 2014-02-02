@@ -7,7 +7,7 @@ Kwiz is able to dispatch in real time the result of the questions.
 - This application is build with [Express](expressjs.com)
 - It uses [jade](http://jade-lang.com/) for the templates.
 - It uses [stylus](http://learnboost.github.io/stylus/) as a css preprocessor.
-- For the moment there is no database, all data are stored into a simple json file. TODO => Pass to MongoDB. (Maybe with options in the application.)
+- For the moment there is no database, all data are stored into a simple json file. TODO => Pass to [MongoDB](http://www.mongodb.com/). (Maybe with options in the application.)
 
 ## How to use it
 - ```npm start``` to launch the application. For now it uses [nodemon](http://nodemon.io/) in order to simpy relaunch the application.

@@ -5,21 +5,23 @@
 
  var loadDB, persistDB;
 
- loadDB = function() {
+ loadDB = function(cb) {
    var path;
    path = "" + __dirname + "/db.json";
    return fs.stat(path, function(err, stat) {
      if (err || !stat.isFile()) {
-       console.log("[DB Load] DB could not be loaded: DB file missing or invalid.");
-       return;
+      var errMessage = "[DB Load] DB could not be loaded: DB file missing or invalid.";
+       //console.log(errMessage);
+       return cb(errMessage, null);
      }
      return fs.readFile(path, function(err, data) {
        if (err) {
-         return console.log("[DB Load Error]: " + err);
+        var errMessage = "[DB Load Error]: " + err;
+         return cb("[DB Load Error]: " + err, null);
        } else {
          DB = JSON.parse(data);
-         console.log(DB);
-         return console.log("[DB Load] starts with " + DB.length + " item(s)");
+         console.log("[DB Load] starts with " + DB.length + " item(s)");
+        return cb(null, DB.length);
        }
      });
    });
@@ -31,7 +33,7 @@
  };
 
  function getQuestion(questionId) {
-   console.log(questionId, DB);
+   //console.log(questionId, DB);
    return _.findWhere(DB, {
      id: questionId
    });
@@ -64,8 +66,8 @@
    var question = _.findWhere(DB, {
      id: questionId
    }) || {};
-   return _.countBy(question.answers, function(num) {
-     return num;
+   return _.countBy(question.answers, function(answer) {
+      return answer == 1 ? 'Oui': 'Non';
    });
  }
 
