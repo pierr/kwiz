@@ -1,20 +1,23 @@
-
 /*
  * GET users listing.
  */
- var db = require('../models/db');
+var question = require('../models/db').question;
 
-exports.index = function(req, res){
-  res.render('question', { title: 'Question' });
+exports.index = function(req, res) {
+	var questions = question.all();
+	res.render('question', {
+		title: 'Question',
+		questions: questions
+	});
 };
-exports.pending = function(req, res){
+exports.pending = function(req, res) {
 	var questionId = +req.params.id;
-	var question = db.getQuestion(questionId);
-    res.render('pending-question', question);
+	var question = question.get(questionId);
+	res.render('pending-question', question);
 };
-exports.post = function(req, res){
-	var questionId = db.addQuestion(req.body.question);
-	res.redirect(/question/+questionId);
+exports.post = function(req, res) {
+	var questionId = question.add(req.body.question);
+	res.redirect(/question/ + questionId);
 	//db.addAnswer(req.body.questionId, req.body.answer);
 	//io.emit('new_score', db.processAnswers());
 	//  console.log(req.body);

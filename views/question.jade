@@ -3,11 +3,19 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-
-  div
-  form(action='/newQuestion',method='post')
-    div(data-role='fieldcontain')
-      fieldset(data-role='controlgroup')
-        label(for='question') question
-           input(id='question',type='text',value='',placeholder='?',name='question')
-      button#reset.btn.btn-primary(type="submit") Start a new question
+  div.newQuestion
+    form(action='/newQuestion',method='post')
+      div(data-role='fieldcontain')
+        fieldset(data-role='controlgroup')
+          label(for='question') question
+             input(id='question',type='text',value='',placeholder='?',name='question')
+        button#reset.btn.btn-primary(type="submit") Create  new question
+  hr
+  div.allQuestions
+    div.list-group
+      h2 Les dernières questions
+      each question in questions
+        a.list-group-item(href!="/question/"+questionid)
+          span.badge.success= (question.answers ? (question.answers.length || 0) : 0) || 0
+          span.badge.danger= (question.answers ? (question.answers.length || 0) : 0) || 0
+          = question.text

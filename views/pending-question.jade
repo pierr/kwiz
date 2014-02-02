@@ -3,5 +3,11 @@ extends layout
 block content
   h1 #{text}
   div.btn-group
-    button#yes.btn.btn-lg.btn-danger no
-    button#yes.btn.btn-lg.btn-success yes
+    button#yes.btn.btn-lg.btn-danger(data-value='yes') no
+    button#no.btn.btn-lg.btn-success(data-value='no') yes
+    script(type='text/javascript').
+      var socket = io.connect('http://localhost:3000')
+      $('button').on('click', function(e){
+        console.log('button', e.target.getAttribute('data-value'))
+        socket.emit('response', { questionId: #{id}})
+      })

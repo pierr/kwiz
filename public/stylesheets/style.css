@@ -5,3 +5,9 @@ body {
 a {
   color: #00b7ff;
 }
+.badge.success {
+  background-color: #008000;
+}
+.badge.danger {
+  background-color: #f00;
+}
