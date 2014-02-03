@@ -10,7 +10,8 @@
     "jade": "~1.1.5",
     "sequelize": "~1.7.0-rc2",
     "socket.io": "~0.9.16",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "connect-flash": "~0.1.1"
   },
   "devDependencies": {
     "chai": "~1.9.0"

@@ -15,7 +15,9 @@ block content
     div.list-group
       h2 Les dernières questions
       each question in questions
-        a.list-group-item(href!="/question/"+questionid)
-          span.badge.success= (question.answers ? (question.answers.length || 0) : 0) || 0
-          span.badge.danger= (question.answers ? (question.answers.length || 0) : 0) || 0
+        a.list-group-item(href!="/question/"+question.id, id!=question.id)
+          span.badge.success.yes= (question.results ? (question.results.yes || 0) : 0) || 0
+          span.badge.danger.no= (question.results ? (question.results.no || 0) : 0) || 0
           = question.text
+      script.
+        

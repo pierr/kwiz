@@ -7,9 +7,21 @@ html
 
     // Move it after in the body  when dev ends
     script(type='text/javascript' src='/bower_components/jquery/jquery.js')
-    script(type='text/javascript' src="/socket.io/socket.io.js")
-    //script(type='text/javascript' src='/bower_components/socket.io/lib/socket.io.js')
     script(type='text/javascript' src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
     script(type='text/javascript' src='/bower_components/d3/d3.js')
   body
+    include _flashes
+    div.alert
+    script(src='/socket.io/socket.io.js')
+    script.
+      var socket = io.connect('http://localhost:3000');
+      //socket.on('answer', function(data){console.log('SOCKET TEST', data)});
+      socket.on('answer:new', function(data){
+          var linkSel = 'a#'+ data.questionId ;
+          var spanSel = ' span.'+ data.value;
+          var value = (+$(spanSel, linkSel).html()) + 1;
+          $(spanSel, linkSel).html(value);
+        })
+      //socket.on('flash', function(flash){alert(flash.type + ' : ' + flash.message)});
     block content
+    

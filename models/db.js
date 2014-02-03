@@ -44,8 +44,13 @@
    question = _.findWhere(DB, {
      id: questionId
    }) || {};
+   console.log('answer for question: '+ questionId, answer);
    question.answers = question.answers || [];
    question.answers.push(answer);
+   //Process the answers.
+   question.results = _.countBy(question.answers, function(answer) {
+       return answer.value === 'yes' ? 'yes': 'no';
+   });
    DB[question.id] = question;
    persistDB();
  }
@@ -67,7 +72,7 @@
      id: questionId
    }) || {};
    return _.countBy(question.answers, function(answer) {
-      return answer == 1 ? 'Oui': 'Non';
+      return answer.value === 'yes' ? 'yes': 'no';
    });
  }
 
