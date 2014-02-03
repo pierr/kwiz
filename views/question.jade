@@ -16,13 +16,14 @@ block content
       h2 Les dernières questions
       each question in questions
         a.list-group-item(href!="/question/"+question.id, id!=question.id)
+          //-span.badge.total= (question.results ? ((question.results.no + question.results.yes) || 0) : 0) || 0
           span.badge.success.yes= (question.results ? (question.results.yes || 0) : 0) || 0
           span.badge.danger.no= (question.results ? (question.results.no || 0) : 0) || 0
           = question.text
           div.progress
-            div.progress-bar.progress-bar-success(style!="width:"+(Math.round((100. * question.results.yes/(question.results.yes + question.results.no))))+'%')
+            div.progress-bar.progress-bar-success.yes(style!="width:"+(Math.round((100. * question.results.yes/(question.results.yes + question.results.no))))+'%')
               span.sr-only Oui
-            div.progress-bar.progress-bar-danger(style!="width:"+(Math.round((100. * question.results.no/(question.results.yes + question.results.no))))+ '%')
+            div.progress-bar.progress-bar-danger.no(style!="width:"+(Math.round((100. * question.results.no/(question.results.yes + question.results.no))))+ '%')
               span.sr-only Non
       script.
         

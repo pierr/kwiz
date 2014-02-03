@@ -17,10 +17,19 @@ html
       var socket = io.connect('http://localhost:3000');
       //socket.on('answer', function(data){console.log('SOCKET TEST', data)});
       socket.on('answer:new', function(data){
+          //Update the concern counter.
           var linkSel = 'a#'+ data.questionId ;
           var spanSel = ' span.'+ data.value;
           var value = (+$(spanSel, linkSel).html()) + 1;
           $(spanSel, linkSel).html(value);
+          var nbYes = +$('span.yes', linkSel).html();
+          var nbNo = +$('span.no', linkSel).html();
+          $('span.total', linkSel).html(nbYes + nbNo);
+          //Progress bar update
+          var pYes = "width:" + Math.round(100.*(nbYes/(nbYes+ nbNo))) + "%";
+          var pNo = "width:" + Math.round(100.*(nbNo/(nbYes+ nbNo))) + "%";
+          $('.progress-bar.yes', linkSel).attr('style', pYes);
+          $('.progress-bar.no', linkSel).attr('style', pNo);
         })
       //socket.on('flash', function(flash){alert(flash.type + ' : ' + flash.message)});
     block content
