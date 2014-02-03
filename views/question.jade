@@ -2,14 +2,13 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  hr
   div.newQuestion
-    form(action='/newQuestion',method='post')
-      div(data-role='fieldcontain')
-        fieldset(data-role='controlgroup')
-          label(for='question') question
-             input(id='question',type='text',value='',placeholder='?',name='question')
-        button#reset.btn.btn-primary(type="submit") Create  new question
+    form(action='/newQuestion',method='post', role='form')
+      div.form-group
+        label(for='question') Nouvelle Question
+        input#question.form-control(type='text',placeholder='Nouvelle question ?',name='question')
+    button#newQuestion.btn.btn-primary.btn-block(type="submit") Create  new question
   hr
   div.allQuestions
     div.list-group
@@ -25,5 +24,3 @@ block content
               span.sr-only Oui
             div.progress-bar.progress-bar-danger.no(style!="width:"+(Math.round((100. * question.results.no/(question.results.yes + question.results.no))))+ '%')
               span.sr-only Non
-      script.
-        
