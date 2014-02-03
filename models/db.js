@@ -28,7 +28,7 @@
  };
 
  persistDB = function() {
-   fs.writeFile("" + __dirname + "/db.json", JSON.stringify(DB));
+   //fs.writeFile("" + __dirname + "/db.json", JSON.stringify(DB));
    return console.log("[DB Save] Persisted BD with " + DB.length + " item(s)");
  };
 
