@@ -11,7 +11,7 @@ Kwiz is able to dispatch in real time the result of the questions.
 
 ## How to use it
 - ```npm start``` to launch the application. For now it uses [nodemon](http://nodemon.io/) in order to simpy relaunch the application.
--  ```npm run test``` to test the application. It uses [mocha](http://visionmedia.github.io/mocha/) in order to run the tests.
+-  ```npm run test``` to test the application. It uses [mocha](http://mochajs.org/) in order to run the tests.
 
 ## Author
 [Pierre Besson](http://pierr.github.io)
